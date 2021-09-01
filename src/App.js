@@ -35,6 +35,9 @@ const App = (props) => {
         value={todo}
       />
       <button onClick={() => addTodod()}>Add Todo</button>
+      <br />
+      <br />
+      <ul>{props.todos.map((item) => {})}</ul>
     </div>
   );
 };
