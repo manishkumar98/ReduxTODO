@@ -25,6 +25,7 @@ const App = (props) => {
     });
     setTodo("");
   };
+  console.log(props);
   return (
     <div className="App">
       <h1>Redux Todo</h1>
@@ -37,7 +38,12 @@ const App = (props) => {
       <button onClick={() => addTodod()}>Add Todo</button>
       <br />
       <br />
-      <ul>{props.todos.map((item) => {})}</ul>
+      <ul>
+        {props.todos.todoList.length > 0 &&
+          props.todos.todoList.map((item) => {
+            return <li key={item.id}>{item.item}</li>;
+          })}
+      </ul>
     </div>
   );
 };
