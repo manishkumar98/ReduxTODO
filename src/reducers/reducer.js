@@ -1,7 +1,8 @@
 import initialState from "../states";
 function reducer(state = initialState, action) {
   if (action.type === "ADD_TODO") {
-    //s console.log(JSON.stringify(state));
+    console.log(JSON.stringify(state));
+
     return { todoList: [...state.todoList, action.text] };
   } else if (action.type === "REMOVE_TODO") {
     return {
