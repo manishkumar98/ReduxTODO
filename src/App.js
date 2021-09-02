@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addTodo: (item) => dispatch(addTodo(item)),
-    removeTodo: (item) => dispatch(removeTodo(item))
+    removeTodo: (id) => dispatch(removeTodo(id))
   };
 };
 
@@ -19,13 +19,20 @@ const App = (props) => {
   const handleChange = (e) => {
     setTodo(e.target.value);
   };
-  const addTodod = () => {
+  const addTodo = (todo) => {
     props.addTodo({
-      item: todo
+      item: todo,
+      id: 1 + Math.random()
     });
     setTodo("");
   };
-  console.log(props);
+  const removeTodo = (id) => {
+    props.removeTodo({
+      id: id
+    });
+    //setTodo("");
+  };
+  //console.log(props);
   return (
     <div className="App">
       <h1>Redux Todo</h1>
@@ -34,14 +41,25 @@ const App = (props) => {
         placeholder="Add item"
         onChange={(e) => handleChange(e)}
         value={todo}
+        s
       />
-      <button onClick={() => addTodod()}>Add Todo</button>
+      <button onClick={() => addTodo(todo)}>Add Todo</button>
       <br />
       <br />
       <ul>
-        {props.todos.todoList.length > 0 &&
-          props.todos.todoList.map((item) => {
-            return <li key={item.id}>{item.item}</li>;
+        {props.todos.todoList &&
+          props.todos.todoList.length > 0 &&
+          props.todos.todoList.map((element) => {
+            // console.log(element);
+            console.log(props.todos.todoList);
+            return (
+              <>
+                <li key={element.id}>
+                  {element.item}{" "}
+                  <button onClick={() => removeTodo(element.id)}>x</button>
+                </li>
+              </>
+            );
           })}
       </ul>
     </div>
@@ -49,3 +67,6 @@ const App = (props) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+/*item:{
+id:2  
+item:"xyz"}*/

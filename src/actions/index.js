@@ -5,7 +5,7 @@ export const addTodo = (text) => ({
   text
 });
 
-export const removeTodo = (text) => ({
+export const removeTodo = (id) => ({
   type: "REMOVE_TODO",
-  text
+  id
 });
